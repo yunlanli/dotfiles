@@ -28,6 +28,7 @@ set wildmenu
 command! MakeTags !ctags -R .
 
 let mapleader=" "
+let maplocalleader=";"
 " useful key-mappings
 " change inside next parenthesis
 onoremap in( :<c-u>normal! f(vi(<cr>
