@@ -1,0 +1,15 @@
+cdll() {
+    cd $1
+    ll
+}
+
+cdls() {
+    cd $1
+    ls
+}
+
+mkcdir() {
+    mkdir $1
+    cd $1
+}
+
