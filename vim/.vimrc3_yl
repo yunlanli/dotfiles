@@ -13,6 +13,12 @@ set encoding=utf-8
 set ruler
 set laststatus=2
 
+autocmd FileType tex                    " tex file settings
+        \ setlocal autoindent
+        \ softtabstop=4 expandtab smarttab 
+        \ textwidth=76
+
+
 " set color scheme to PaperColor Light
 set t_Co=256
 
@@ -45,6 +51,7 @@ noremap gC : call Uncomment()<CR>
 " unhighlight after search
 nnoremap <Leader><space> :nohl<cr>
 nnoremap <Leader>wq :wq<cr>
+nnoremap <Leader>w :w<cr>
 nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>p :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
