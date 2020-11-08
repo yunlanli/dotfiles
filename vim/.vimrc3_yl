@@ -18,7 +18,10 @@ autocmd FileType tex                    " tex file settings
         \ softtabstop=4 expandtab smarttab 
         \ textwidth=76
 
+autocmd FileType asm                    " .s file settings
+        \ setlocal autoindent
 
+autocmd TextChanged,TextChangedI *.tex silent :write
 " set color scheme to PaperColor Light
 set t_Co=256
 
