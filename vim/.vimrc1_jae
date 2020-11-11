@@ -2,9 +2,6 @@
 " Jae's settings
 "
 
-" Line numbers
-set number
-
 " Buffer switching
 :nnoremap <D-Right> :bnext<CR>
 :nnoremap <M-Right> :bnext<CR>
@@ -21,9 +18,6 @@ set shiftwidth=4
 " Always replace tab with spaces, except for makefiles
 set expandtab
 autocmd FileType make setlocal noexpandtab
-
-" Text file settings
-autocmd FileType text setlocal autoindent expandtab softtabstop=2 textwidth=76 spell spelllang=en_us
 
 " Don't do spell-checking on Vim help files
 autocmd FileType help setlocal nospell
