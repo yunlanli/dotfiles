@@ -1,6 +1,6 @@
 .PHONY: vimrc
 vimrc: 
-	cat .v* plugin/.v* > ~/.vimrc
+	cat .v* plugin/.v* function/* > ~/.vimrc
 
 .PHONY: vundle
 vundle:
