@@ -1,3 +1,6 @@
+.PHONY: all
+all: vundle vimrc install backup
+
 .PHONY: vimrc
 vimrc: 
 	cat .v* plugin/.v* function/* > ~/.vimrc
@@ -9,3 +12,9 @@ vundle:
 .PHONY: install
 install:
 	vim +PluginInstall +qall
+
+# creates ~/.backup to avoid .vim*~ files littering the cwd
+.PHONY: backup
+.bakcup:
+	mkdir ~/.backup
+
