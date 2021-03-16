@@ -1,8 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Start of Yunlan's setting
 
-source ~/.yl-config/vim/function/comments.vim
-
 " hybrid line numbering
 set nu rnu
 
@@ -23,6 +21,8 @@ autocmd FileType tex setlocal autoindent softtabstop=4 expandtab smarttab textwi
 autocmd FileType tex normal ;ll
 
 autocmd FileType asm setlocal autoindent
+
+autocmd FileType c,cpp setlocal autoindent noexpandtab shiftwidth=8 textwidth=80
 
 autocmd TextChanged,TextChangedI *.tex silent :write
 
