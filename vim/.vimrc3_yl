@@ -40,6 +40,9 @@ set wildmenu
 " Tag jumping
 command! MakeTags !ctags -R .
 
+" Auto Completion
+set cpt=.
+
 let mapleader=" "
 let maplocalleader=";"
 " useful key-mappings
