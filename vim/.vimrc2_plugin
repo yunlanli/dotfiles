@@ -7,7 +7,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'                      " :GBrowse opens up GitHub
 
 Plugin 'NLKNguyen/papercolor-theme'             " PaperColor Plugin
 Plugin 'yuezk/vim-js'                           " syntax highlighting enhancement for jsx
