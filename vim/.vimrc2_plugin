@@ -21,6 +21,7 @@ Plugin 'Sirver/ultisnips'                       " for writing snippets for latex
 Plugin 'KeitaNakamura/tex-conceal.vim'          " for better latex conceal
 
 Plugin 'preservim/nerdtree'                     " NERDTree file explorer
+Plugin 'tpope/vim-surround'			" make manipulating surroundings easy
 
 call vundle#end()           " required
 filetype plugin indent on   " required
