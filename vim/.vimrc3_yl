@@ -12,17 +12,20 @@ set ruler
 set laststatus=2
 
 set highlight-=B:SpellBad highlight+=Bu " underline mispelled words if spell is on
+
+set noexpandtab
+
 " Ctrl-L to correct spelling on the fly
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-autocmd FileType text,markdown setlocal autoindent expandtab softtabstop=2 textwidth=76 spell spelllang=en_us
+autocmd FileType text,markdown setlocal autoindent softtabstop=2 textwidth=76 spell spelllang=en_us
 
-autocmd FileType tex setlocal autoindent softtabstop=4 expandtab smarttab textwidth=76 spell spelllang=en_us
+autocmd FileType tex setlocal autoindent softtabstop=4 smarttab textwidth=76 spell spelllang=en_us
 autocmd FileType tex normal ;ll
 
 autocmd FileType asm setlocal autoindent
 
-autocmd FileType c,cpp setlocal autoindent noexpandtab shiftwidth=8 textwidth=80
+autocmd FileType c,cpp setlocal autoindent shiftwidth=8 textwidth=80
 
 autocmd TextChanged,TextChangedI *.tex silent :write
 
