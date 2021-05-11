@@ -15,6 +15,6 @@ install:
 
 # creates ~/.backup to avoid .vim*~ files littering the cwd
 .PHONY: backup
-.bakcup:
+backup:
 	mkdir ~/.backup
 
