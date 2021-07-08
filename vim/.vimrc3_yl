@@ -68,5 +68,9 @@ nnoremap <Leader>w :w<cr>
 nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>p :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
+
+" copy from vim to system clipboard
+vnoremap <c-c>	"+y
+
 " End of Yunlan's Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
