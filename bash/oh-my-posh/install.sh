@@ -8,14 +8,17 @@ wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/theme
 unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
 chmod u+rw ~/.poshthemes/*.json
 rm ~/.poshthemes/themes.zip
+# add customized theme
+cp yunlan.omp.json ~/.poshthemes/
 
 # download Nerd Fonts
 ./font.sh
 echo "Please set your terminal to use Space Mono Nerd Font for glyphs to work correctly"
 
 # use slimfat.omp.json theme
-echo "Use slimfat oh-my-posh theme..."
-echo "eval \"\$(oh-my-posh --init --shell bash --config ~/.poshthemes/slimfat.omp.json)\"" >> ~/.bashrc
+mytheme=yunlan
+echo "Use $mytheme oh-my-posh theme..."
+echo "eval \"\$(oh-my-posh --init --shell bash --config ~/.poshthemes/$mytheme.omp.json)\"" >> ~/.bashrc
 
 echo "Activating the theme..."
 . ~/.bashrc

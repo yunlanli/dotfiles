@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+   "blocks": [
+       {
+           "type": "prompt",
+           "alignment": "left",
+           "segments": [
+	       {
+		   "type": "session",
+		   "style": "plain",
+		   "foreground": "#E36464",
+		   "properties": {
+		       "user_info_separator": "",
+		       "display_host": false,
+		       "postfix": " @"
+		   }
+	       },
+               {
+                   "type": "path",
+                   "style": "plain",
+                   "properties": {
+                       "prefix": "<#f2f200> \ue5ff </>",
+                       "style": "full",
+                       "enable_hyperlink": false,
+                       "folder_icon": "<#B5B2C2>\ue5fe </>"
+                   }
+               },
+	       {
+		   "type": "git",
+		   "style": "plain",
+		   "properties": {
+		       "display_status": true,
+		       "status_colors_enabled": true,
+		       "color_background": false,
+		       "local_changes_color": "#56B6C2",
+		       "working_color": "#E84855",
+		       "staging_color": "#2FDA4E",
+		       "ahead_color": "#2EC4B6",
+		       "behind_color": "#8A4FFF",
+		       "branch_icon": "",
+		       "prefix": "<#676A68>on</> <#B4B4EB>git(</>",
+		       "postfix": "<#B4B4EB>)</>"
+		   }
+	       }
+	   ]
+       },
+       {
+	   "type": "prompt",
+	   "alignment": "right",
+	   "segments": [
+	       {
+		   "type": "python",
+		   "style": "powerline",
+		   "powerline_symbol": "\uE0B2",
+		   "invert_powerline": true,
+		   "foreground": "#003544",
+		   "background": "#0087D8",
+		   "properties": {
+		       "prefix": " \uE235 ",
+		       "display_version": true,
+		       "display_mode": "files",
+		       "display_virtual_env": true
+		   }
+	       },
+	       {
+		   "type": "time",
+		   "style": "powerline",
+		   "invert_powerline": true,
+		   "powerline_symbol": "\uE0B2",
+		   "foreground": "#fff",
+		   "background": "#003543",
+		   "properties": {
+		       "prefix": "<#fff> \uf64f </>"
+		   }
+	       }
+	   ]
+       },
+       {
+           "type": "prompt",
+           "alignment": "left",
+	   "newline": true,
+	   "segments": [
+	       {
+		   "type": "text",
+		   "style": "plain",
+		   "foreground": "#62ED8B",
+		   "properties": {
+		       "text": "\u279C",
+		       "postfix": " ",
+		       "prefix": ""
+		   }
+	       }
+	   ]
+       }
+       
+   ]
+}
