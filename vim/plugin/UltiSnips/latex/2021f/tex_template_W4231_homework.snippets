@@ -1,0 +1,71 @@
+snippet 4231hmw "Homework Template for W4231" b
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning} % This package is used for drawing DFA, NFAs
+\usepackage{algpseudocode} % for typesetting pseudocode
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}  % This package allows the importing of images
+\usepackage{hyperref}
+\hypersetup{frenchlinks=true, pdfauthor=Yunlan Li, pdfhighlight=/I, pdfborder=0 0 0}
+\usepackage{bookmark}
+\usepackage{xargs}  % define commands with multiple optional arguments
+\usepackage{fancyhdr}  % for headers and footers
+
+\setlength{\parindent}{0em} % no paragraph indent
+\setlength{\parskip}{1em} % adds 1em vertical space between paragraphs
+
+\newcommand{\problem}[1][]{\section{Problem #1}}
+\newcommand{\maketitle}[1][]{\begin{center}
+		\Large{CSOR W4231 Analysis of Algorithms I - Assignment #1}
+		
+		\normalsize{Yunlan Li, yl4387}
+\end{center}}
+
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+% footer
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{Page \thepage}
+%\rfoot{Collaborated with Howard Yang (hy2724)}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% macros
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+% syntax
+% \newcommand{\macroName}[# param][1=...,2=...,...]{<body> %access param using #n}
+
+\begin{document}
+	\maketitle[${1}]
+	
+	\problem[1]
+	${2:YOUR SOLUTION HERE}
+	
+	\newpage
+	\problem[2]
+	
+	
+	\newpage
+	\problem[3]
+
+
+	\newpage
+	\problem[4]
+
+
+	\newpage
+	\problem[5]
+	
+\end{document}
+endsnippet

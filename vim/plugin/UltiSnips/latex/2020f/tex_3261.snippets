@@ -1,0 +1,12 @@
+global !p
+from tex_context import *
+endglobal
+
+snippet blank "blank on Turing Machine" iA
+\textvisiblespace 
+endsnippet
+
+context "math()"
+snippet #(NP|P)# "mathcal" rA
+\mathcal{`!p snip.rv=match.group(1)`}
+endsnippet

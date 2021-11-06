@@ -1,0 +1,111 @@
+snippet note "Note Skeleton for Math&CS Courses" b
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./graphics/} }
+\usepackage{physics}
+\usepackage{algpseudocode} % for typesetting pseudocode
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{changepage} % for the adjustwidth enviroment that changes right indentation
+\usepackage{hyperref}
+\hypersetup{
+    frenchlinks=true,
+    pdfauthor=Yunlan Li,
+    pdfhighlight=/I,
+    pdfborder=0 0 0
+}
+
+% code environment configurations
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% explantion style: extra vertical spacing after the enviroment
+\newtheoremstyle{explaination}{-10pt}{}{}{}{\itshape}{:}{.5em}{}
+
+% Numbered definition, unnumbered remarks
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]	
+
+\theoremstyle{explaination}
+\newtheorem*{myremark}{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{myproof}{Proof}
+
+% shorthand for indented remark, proof, and example
+\newenvironment{re}
+{
+	\begin{adjustwidth}{20pt}{20pt}
+		\begin{myremark}
+		}
+		{
+			\\
+		\end{myremark}
+	\end{adjustwidth}
+}
+
+\newenvironment{p}
+{
+	\begin{adjustwidth}{20pt}{20pt}
+		\begin{myproof}
+		}
+		{
+			\\\\
+		\end{myproof}
+	\end{adjustwidth}
+}
+
+\newenvironment{eg}
+{
+	\begin{adjustwidth}{20pt}{20pt}
+		\begin{example}
+		}
+		{
+			\\\\
+		\end{example}
+	\end{adjustwidth}
+}
+
+\title{ ${1: COURSE TITLE & NAME} }
+\author{Yunlan Li}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\setlength{\parindent}{0em} % disable paragraph indent
+\setlength{\parskip}{1em} % 1em vertical space between paragraphs
+
+${2: START YOUR COURSE JOURNEY HERE :)}
+
+\end{document}
+endsnippet

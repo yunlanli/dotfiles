@@ -1,0 +1,56 @@
+global !p
+from tex_context import *
+endglobal
+
+snippet dv "derivative definition" w
+\lim \limits_{h \rightarrow 0} \frac{f($1+h)-f($1)}{h}$0
+endsnippet
+
+context "math()"
+snippet lim "limits" iwA 
+\lim_{${1:n} \rightarrow ${2:\infty}}$0
+endsnippet
+
+context "math()"
+snippet sum "\sum" iwA 
+\sum_{${1:i=0}}^{${2:\infty}}$0
+endsnippet
+
+context "math()"
+snippet norm "norm" iwA
+\left\|$1\right\|$0
+endsnippet
+
+context "math()"
+snippet abs "absolute value" iwA
+\left|$1\right|$0
+endsnippet
+
+context "math()"
+snippet lr "paranthesis" iA
+\left($1\right)$0
+endsnippet
+
+priority 100
+context "math()"
+snippet 'dd([\w\\]+)\s' "differentiate w.r.t" rwA
+\frac{d}{d`!p snip.rv = match.group(1)`}$0
+endsnippet
+
+priority 200
+context "math()"
+snippet 'pdd([\w\\]+)\s' "differentiate w.r.t" rwA
+\frac{\partial}{\partial `!p snip.rv = match.group(1)`}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+priority 200
+context "math()"
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
+\\`!p snip.rv = math()`
+endsnippet

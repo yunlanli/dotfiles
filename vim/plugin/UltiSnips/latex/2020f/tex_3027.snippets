@@ -1,0 +1,40 @@
+global !p
+from tex_context import *
+endglobal
+
+context "math()"
+snippet flow "time-t-map" iA
+\varphi_t(${1:x})$0
+endsnippet
+
+context "math()"
+snippet fvec "Vector Field F" iA
+F: U \rightarrow \mathbb{R}^n
+endsnippet
+
+priority 100
+context "math()"
+snippet '(x|y|\\theta|p|u)(\'|_\d)*t' "x(t),x_1'(t),x'(t),x_1(t)" rwA
+`!p 
+snip.rv = match.group()[:len(match.group())-1]
+`(t)
+endsnippet
+
+snippet SL "Sturm-Liouville" wA 
+Sturm-Liouville
+endsnippet
+
+context "math()"
+snippet ult "u_lambda (t)" wA
+u_\lambda(t)
+endsnippet
+
+context "math()"
+snippet clt "c_lambda (t)" wA
+\theta_\lambda(t)
+endsnippet
+
+context "math()"
+snippet rlt "r_lambda (t)" wA
+r_\lambda(t)
+endsnippet

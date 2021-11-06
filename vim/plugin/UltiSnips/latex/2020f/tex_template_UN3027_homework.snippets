@@ -1,0 +1,61 @@
+snippet 3027hmw "Homework Template for UN3207" b
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning} % This package is used for drawing DFA, NFAs
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=25mm,
+	right=35mm,
+	top=25mm,
+}
+\usepackage{graphicx}  % This package allows the importing of images
+
+\setlength{\parindent}{0em} % no paragraph indent
+\setlength{\parskip}{1em} % adds 1em vertical space between paragraphs
+
+\newcommand{\problem}[2][]{\begin{flushleft}
+		\textbf{Problem #1}: \textit{#2}
+		
+\end{flushleft}}
+\newcommand{\sol}{\textbf{Solution}:} %Use if you want a boldface solution line
+\newcommand{\maketitletwo}[2][]{\begin{center}
+		\Large{\textbf{Assignment #1}
+			
+			UN3207 Odinary Differential Equation} % Name of course here
+		\vspace{5pt}
+		
+		\normalsize{Yunlan Li  % Your name here
+			
+			\today}        % Change to due date if preferred
+		\vspace{15pt}
+		
+\end{center}}
+
+% macros
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+
+\begin{document}
+	\maketitletwo[${1}]  % Optional argument is assignment number
+	%Keep a blank space between maketitletwo and \question[1]
+	
+	\problem[1]{}
+	${2:YOUR SOLUTION HERE}
+
+	\problem[2]{}
+	
+	YOUR SOLUTION HERE
+	
+	\problem[3]{}
+	
+
+\end{document}
+endsnippet

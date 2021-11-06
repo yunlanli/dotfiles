@@ -1,0 +1,31 @@
+snippet #i("|<)# "#include" rbA
+#include `!p snip.rv=match.group(1)`${1:${VISUAL}}`!p 
+snip.rv= ">" if match.group(1) == "<" else "\""`$0
+endsnippet
+
+snippet main "main function" bA
+int main(${1:int argc, char **argv})
+{
+	$0
+	
+	return 0;
+}
+endsnippet
+
+snippet for "for loop" bA
+for ($1; $2; $3) {
+	$4
+}
+$0
+endsnippet
+
+snippet while "while loop" bA
+while ($1) {
+	$2
+}
+$0
+endsnippet
+
+snippet fread "fread" iA
+fread(${1:void *p},${2:size},${3:n},${4:file})$0
+endsnippet
