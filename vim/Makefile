@@ -1,5 +1,5 @@
 .PHONY: all
-all: vundle vimrc install backup
+all: backup vundle vimrc install
 
 .PHONY: vimrc
 vimrc: 
@@ -7,6 +7,7 @@ vimrc:
 
 .PHONY: vundle
 vundle:
+	test -d ~/.vim/bundle/Vundle.vim || \
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 .PHONY: install
@@ -16,5 +17,5 @@ install:
 # creates ~/.backup to avoid .vim*~ files littering the cwd
 .PHONY: backup
 backup:
-	mkdir ~/.backup
+	test -d ~/.backup || mkdir ~/.backup
 

@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'                      " :GBrowse opens up GitHub
 
-Plugin 'NLKNguyen/papercolor-theme'             " PaperColor Plugin
+Plugin 'arcticicestudio/nord-vim'		" Nord Color Theme
 Plugin 'yuezk/vim-js'                           " syntax highlighting enhancement for jsx
 Plugin 'maxmellon/vim-jsx-pretty'               " syntax highlighting enchancement for javascript
 Plugin 'pangloss/vim-javascript'
