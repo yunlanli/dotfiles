@@ -21,9 +21,12 @@ Plugin 'Sirver/ultisnips'                       " for writing snippets for latex
 Plugin 'KeitaNakamura/tex-conceal.vim'          " for better latex conceal
 
 Plugin 'preservim/nerdtree'                     " NERDTree file explorer
+Plugin 'junegunn/fzf'				" Fuzzy File Finder
+Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'			" make manipulating surroundings easy
 
 Plugin 'dense-analysis/ale'			" Linter
+Plugin 'ycm-core/YouCompleteMe'			" Auto Completion
 
 call vundle#end()           " required
 filetype plugin indent on   " required
