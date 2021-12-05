@@ -1,0 +1,11 @@
+snippet test "ppx_expect_test" b
+let %expect_test "${1:test name}" =
+  ${2:expression}
+  [%expect {| |}]
+$0
+endsnippet
+
+snippet todo "todo comment" 
+(* TODO: $1 *)
+$0
+endsnippet

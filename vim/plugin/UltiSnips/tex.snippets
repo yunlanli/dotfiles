@@ -1,15 +1,24 @@
 global !p
-from tex_context import *
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment():
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + + "')")
+    return x != '0' and y != '0'
+
 endglobal
 
-snippet boxc "Comment Box Marking the start of each lecture" 
+snippet boxc "Comment Box Marking the start of each lecture"
 `!p snip.rv = '%%'+'%'*(len(t[1])+2)+'%%'`
 %  $1  %
 `!p snip.rv = '%%'+'%'*(len(t[1])+2)+'%%'`
 $0
 endsnippet
 
-snippet today "Date" 
+snippet today "Date"
 `date +%a\ %b\ %d,\ %Y`
 endsnippet
 
@@ -162,23 +171,23 @@ snippet p "paranthesis" i
 endsnippet
 
 context "math()"
-snippet ;gt "right arrow" iA
+snippet -> "right arrow" iA
 \rightarrow
 endsnippet
 
 context "math()"
-snippet ;ld "imply" iA
-\Longrightarrow
+snippet => "imply" iA
+\Rightarrow
 endsnippet
 
 context "math()"
-snippet ;la "left arrow" iA
+snippet <- "left arrow" iA
 \leftarrow
 endsnippet
 
 context "math()"
-snippet ;lld "left imply" iA
-\Longleftarrow
+snippet <= "left imply" iA
+\Leftarrow
 endsnippet
 
 context "math()"
@@ -187,7 +196,7 @@ snippet ;iff "iff" iA
 endsnippet
 
 context "math()"
-snippet -> "maps to" A
+snippet |-> "maps to" A
 \mapsto
 endsnippet
 
@@ -228,11 +237,11 @@ snippet tu "underline" i
 \underline{${1:${VISUAL}}}$0
 endsnippet
 
-snippet tc "colored text" wA 
+snippet tc "colored text" wA
 \textcolor{${1:red}}{$2}$0
 endsnippet
 
-snippet thh "highlighted text" iA	
+snippet thh "highlighted text" iA
 \colorbox{${1:orange}}{$2}$0
 endsnippet
 
@@ -323,12 +332,12 @@ snippet dv "derivative definition" w
 endsnippet
 
 context "math()"
-snippet lim "limits" iwA 
+snippet lim "limits" iwA
 \lim_{${1:n} \rightarrow ${2:\infty}}$0
 endsnippet
 
 context "math()"
-snippet sum "\sum" iwA 
+snippet sum "\sum" iwA
 \sum_{${1:i=0}}^{${2:\infty}}$0
 endsnippet
 
@@ -388,6 +397,6 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
-snippet cite "add citation reference" i 
+snippet cite "add citation reference" i
 ~\cite{${1:${VISUAL}}}$0
 endsnippet

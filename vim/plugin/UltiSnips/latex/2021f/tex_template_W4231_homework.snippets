@@ -9,6 +9,7 @@ snippet 4231hmw "Homework Template for W4231" b
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata,positioning} % This package is used for drawing DFA, NFAs
 \usepackage{algpseudocode} % for typesetting pseudocode
+\usepackage{algorithm}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{graphicx}  % This package allows the importing of images
 \usepackage{hyperref}
@@ -21,9 +22,9 @@ snippet 4231hmw "Homework Template for W4231" b
 \setlength{\parskip}{1em} % adds 1em vertical space between paragraphs
 
 \newcommand{\problem}[1][]{\section{Problem #1}}
-\newcommand{\maketitle}[1][]{\begin{center}
+\newcommand{\maketitletwo}[1][]{\begin{center}
 		\Large{CSOR W4231 Analysis of Algorithms I - Assignment #1}
-		
+
 		\normalsize{Yunlan Li, yl4387}
 \end{center}}
 
@@ -47,15 +48,15 @@ snippet 4231hmw "Homework Template for W4231" b
 % \newcommand{\macroName}[# param][1=...,2=...,...]{<body> %access param using #n}
 
 \begin{document}
-	\maketitle[${1}]
-	
+	\maketitletwo[${1}]
+
 	\problem[1]
 	${2:YOUR SOLUTION HERE}
-	
+
 	\newpage
 	\problem[2]
-	
-	
+
+
 	\newpage
 	\problem[3]
 
@@ -66,6 +67,6 @@ snippet 4231hmw "Homework Template for W4231" b
 
 	\newpage
 	\problem[5]
-	
+
 \end{document}
 endsnippet
