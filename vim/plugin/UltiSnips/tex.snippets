@@ -11,6 +11,16 @@ def env(name):
 
 endglobal
 
+snippet macro "built-in latex macro"
+\newcommand{${1:macro name}}{${2:macro def}}
+$0
+endsnippet
+
+snippet xmacro "latex macro with default param values"
+\newcommandx{${1:macro name}}[${2:no. params}][${3: default value e.g 1=a,3=b}]{${2:macro def}}
+$0
+endsnippet
+
 snippet boxc "Comment Box Marking the start of each lecture"
 `!p snip.rv = '%%'+'%'*(len(t[1])+2)+'%%'`
 %  $1  %
@@ -32,12 +42,11 @@ endsnippet
 
 snippet algo "algorithm" b
 \begin{algorithm}
-    \caption{$1}
-    \begin{algorithmic}
-	$2
-    \end{algorithmic}
+	\caption{$1}
+	\begin{algorithmic}[1]
+		$0
+	\end{algorithmic}
 \end{algorithm}
-$0
 endsnippet
 
 snippet table "Table environment" b

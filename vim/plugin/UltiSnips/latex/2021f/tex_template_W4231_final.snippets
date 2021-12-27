@@ -1,4 +1,4 @@
-snippet 4231hmw "Homework Template for W4231" b
+snippet 4231final "Homework Template for W4231" b
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
@@ -16,16 +16,17 @@ snippet 4231hmw "Homework Template for W4231" b
 \hypersetup{frenchlinks=true, pdfauthor=Yunlan Li, pdfhighlight=/I, pdfborder=0 0 0}
 \usepackage{bookmark}
 \usepackage{xargs}  % define commands with multiple optional arguments
+\usepackage{xspace}
 \usepackage{fancyhdr}  % for headers and footers
 
 \setlength{\parindent}{0em} % no paragraph indent
 \setlength{\parskip}{1em} % adds 1em vertical space between paragraphs
 
 \newcommand{\problem}[1][]{\section{Problem #1}}
-\newcommand{\maketitletwo}[1][]{\begin{center}
-		\Large{CSOR W4231 Analysis of Algorithms I - Assignment #1}
+\newcommand{\maketitletwo}{\begin{center}
+	\Large{CSOR W4231 Analysis of Algorithms I - Final}
 
-		\normalsize{Yunlan Li, yl4387}
+	\normalsize{Yunlan Li, yl4387}
 \end{center}}
 
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
@@ -36,7 +37,6 @@ snippet 4231hmw "Homework Template for W4231" b
 \pagestyle{fancy}
 \fancyhf{}
 \lfoot{Page \thepage}
-%\rfoot{Collaborated with Howard Yang (hy2724)}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.5pt}
 
@@ -44,17 +44,33 @@ snippet 4231hmw "Homework Template for W4231" b
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\N{\mathbb{N}}
+
+\def\adj{adjacency list representation\xspace}
+\def\dag{directed acyclic graph\xspace}
+\def\topo{topological ordering\xspace}
+\def\tops{topological sort\xspace}
 % syntax
-% \newcommand{\macroName}[# param][1=...,2=...,...]{<body> %access param using #n}
+% \newcommandx{\macroName}[# param][1=...,2=...,...]{<body> %access param using #n}
 
 \begin{document}
-	\maketitletwo[${1}]
+	\maketitletwo
 
 	\problem[1]
-	${2:YOUR SOLUTION HERE}
+	${1:YOUR SOLUTION HERE}
 
 	\newpage
 	\problem[2]
+	\subsection{part 1}
+
+	\subsection{part 2}
+
+	\subsection{part 3}
+
+	\subsection{part 4}
+
+	\subsection{part 5}
+
+	\subsection{part 6}
 
 
 	\newpage
@@ -67,6 +83,10 @@ snippet 4231hmw "Homework Template for W4231" b
 
 	\newpage
 	\problem[5]
+
+
+	\newpage
+	\problem[6]
 
 \end{document}
 endsnippet
