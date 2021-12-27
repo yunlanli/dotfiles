@@ -2,8 +2,9 @@
 all: backup vundle vimrc install
 
 .PHONY: vimrc
-vimrc: 
-	cat .v* plugin/.v* function/* > ~/.vimrc
+vimrc:
+	test -f ~/.vimrc && rm -f ~/.vimrc
+	sed "s# # `pwd`/#" .vimrc > ~/.vimrc
 
 .PHONY: vundle
 vundle:
@@ -18,4 +19,3 @@ install:
 .PHONY: backup
 backup:
 	test -d ~/.backup || mkdir ~/.backup
-
