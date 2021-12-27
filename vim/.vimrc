@@ -8,5 +8,6 @@ source plugin/.vimrc-nerdtree
 source plugin/.vimrc-texconceal
 source plugin/.vimrc-ultisnip
 source plugin/.vimrc-vimtex
+source plugin/.vimrc-ycm
 
 source function/comments.vim

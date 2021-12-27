@@ -19,7 +19,7 @@ colorscheme nord " color scheme
 autocmd FileType help		setlocal nospell
 autocmd FileType text,markdown	setlocal autoindent softtabstop=2 textwidth=76 spell spelllang=en_us
 
-autocmd FileType tex		setlocal autoindent softtabstop=4 textwidth=76 spell spelllang=en_us smarttab 
+autocmd FileType tex		setlocal autoindent shiftwidth=4 softtabstop=4 textwidth=100 smarttab spell spelllang=en_us
 autocmd FileType tex		normal ;ll
 autocmd TextChanged,TextChangedI *.tex silent :write
 
