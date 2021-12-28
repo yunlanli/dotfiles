@@ -27,13 +27,13 @@ backup:
 .PHONY: vimrc
 vimrc:
 	test -f ~/.vimrc && rm -f ~/.vimrc
-	sed "s#source #source `pwd`/common/#" common/.vimrc  > $(VIMRC)
+	sed "s#source #source `pwd`/common/#" common/init.vim  > $(VIMRC)
 	echo >> $(VIMRC)
-	sed "s#source #source `pwd`/vim/#" vim/.vimrc >> $(VIMRC)
+	sed "s#source #source `pwd`/vim/#" vim/init.vim >> $(VIMRC)
 
 .PHONY: nvimrc
 nvimrc:
 	test -f $(NVIMRC) && rm -f $(NVIMRC)
-	sed "s#source #source `pwd`/common/#" common/.vimrc  > $(NVIMRC)
+	sed "s#source #source `pwd`/common/#" common/init.vim  > $(NVIMRC)
 	echo >> $(NVIMRC)
 	sed "s#source #source `pwd`/nvim/#" nvim/init.vim >> $(NVIMRC)
