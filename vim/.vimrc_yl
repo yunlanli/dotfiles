@@ -34,7 +34,29 @@ autocmd FileType vim	      	setlocal autoindent shiftwidth=2 softtabstop=2 textw
 " key bindings
 let mapleader=" "
 let maplocalleader=";"
-" change inside next parenthesis
+
+function OpenVimrc()
+  :if !exists("w:prev_vimrc_buff")
+  : let w:prev_vimrc_buff=bufnr("%")
+  : let w:prev_vimrc_pos=getpos(".")
+  :endif
+  :badd $MYVIMRC
+  :execute "b!" $MYVIMRC
+endfunction
+
+function CloseVimrc()
+  :exe "bwipe!" $MYVIMRC
+  :exe "b!" w:prev_vimrc_buff
+  :unlet w:prev_vimrc_buff
+endfunction
+
+nmap <leader>ve :execute OpenVimrc()<cr>
+nmap <leader>vr :source $MYVIMRC<cr>
+nmap <leader>vq :execute CloseVimrc()<cr>:call setpos(".", w:prev_vimrc_pos)<cr>:unlet w:prev_vimrc_pos<cr>
+
+map gf :edit <cfile><cr>
+
+"change inside next parenthesis
 onoremap in( :<c-u>normal! f(vi(<cr>
 " change inside previous(last) parenthesis
 onoremap il( :<c-u>normal! F(vi(<cr>
