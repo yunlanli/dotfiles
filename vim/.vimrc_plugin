@@ -1,4 +1,3 @@
-" Start of Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -17,7 +16,6 @@ Plugin 'maxmellon/vim-jsx-pretty'               " syntax highlighting enchanceme
 Plugin 'pangloss/vim-javascript'
 
 Plugin 'lervag/vimtex'                          " writing, compiling latex in vim
-Plugin 'Sirver/ultisnips'                       " for writing snippets for latex
 Plugin 'KeitaNakamura/tex-conceal.vim'          " for better latex conceal
 
 Plugin 'preservim/nerdtree'                     " NERDTree file explorer
@@ -26,9 +24,11 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'			" make manipulating surroundings easy
 
 Plugin 'dense-analysis/ale'			" Linter
-Plugin 'ycm-core/YouCompleteMe'			" Auto Completion
+
+if !has("nvim")
+  Plugin 'ycm-core/YouCompleteMe'		" Auto Completion
+  Plugin 'Sirver/ultisnips'                     " for writing snippets for latex
+endif
 
 call vundle#end()           " required
 filetype plugin indent on   " required
-" End of Vundle
-

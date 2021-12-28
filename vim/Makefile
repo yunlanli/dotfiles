@@ -4,7 +4,7 @@ all: backup vundle vimrc install
 .PHONY: vimrc
 vimrc:
 	test -f ~/.vimrc && rm -f ~/.vimrc
-	sed "s# # `pwd`/#" .vimrc > ~/.vimrc
+	sed "s#source #source `pwd`/#" .vimrc > ~/.vimrc
 
 .PHONY: vundle
 vundle:

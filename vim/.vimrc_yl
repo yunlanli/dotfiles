@@ -12,7 +12,9 @@ set backupdir^=~/.backup
 set dir^=~/.backup//
 set noexpandtab
 set ignorecase
-set highlight-=B:SpellBad highlight+=Bu	  " underline mispelled words if spell is on
+if !has("nvim")
+  set highlight-=B:SpellBad highlight+=Bu	  " underline mispelled words if spell is on
+endif
 colorscheme nord " color scheme
 
 
