@@ -1,94 +1,63 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Start of Yunlan's setting
-
+set nocompatible
 set nu rnu
 set encoding=utf-8
 set ruler
 set laststatus=2
-set path+=**  " Finding Files
+set path+=**
 set wildmenu
 set cpt=.
 set backupdir^=~/.backup
 set dir^=~/.backup//
-set noexpandtab
+set ai noet sw=8 ts=8 sts=0
 set ignorecase
-if !has("nvim")
-  set highlight-=B:SpellBad highlight+=Bu	  " underline mispelled words if spell is on
-endif
-colorscheme nord " color scheme
+set hlsearch
+set mouse="a"
+syntax enable
+colorscheme nord
+
+autocmd FileType help             setlocal nospell
+autocmd FileType text,markdown    setlocal textwidth=80 spell spelllang=en_us
+
+autocmd FileType tex              setlocal textwidth=100 spell spelllang=en_us
+autocmd FileType tex              normal ;ll
+autocmd TextChanged,TextChangedI  *.tex silent :write
+
+autocmd FileType c,cpp            setlocal textwidth=80
+autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
+autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
+autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
+autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
 
 
-autocmd FileType help		setlocal nospell
-autocmd FileType text,markdown	setlocal autoindent softtabstop=2 textwidth=76 spell spelllang=en_us
-
-autocmd FileType tex		setlocal autoindent shiftwidth=4 softtabstop=4 textwidth=100 smarttab spell spelllang=en_us
-autocmd FileType tex		normal ;ll
-autocmd TextChanged,TextChangedI *.tex silent :write
-
-autocmd FileType asm		setlocal autoindent
-autocmd FileType c,cpp	      	setlocal autoindent shiftwidth=4 softtabstop=4 textwidth=80
-autocmd FileType python	      	setlocal autoindent shiftwidth=4 softtabstop=4 textwidth=80
-autocmd FileType ocaml	      	setlocal autoindent shiftwidth=2 softtabstop=2 textwidth=80
-autocmd FileType javascript   	setlocal autoindent shiftwidth=2 softtabstop=2 textwidth=80
-autocmd FileType vim	      	setlocal autoindent shiftwidth=2 softtabstop=2 textwidth=80
-
-
-" key bindings
 let mapleader=" "
 let maplocalleader=";"
 
 function OpenVimrc()
-  :if !exists("w:prev_vimrc_buff")
-  : let w:prev_vimrc_buff=bufnr("%")
-  : let w:prev_vimrc_pos=getpos(".")
-  :endif
-  :badd $MYVIMRC
-  :execute "b!" $MYVIMRC
+	:if !exists("w:prev_vimrc_buff")
+	: let w:prev_vimrc_buff=bufnr("%")
+	: let w:prev_vimrc_pos=getpos(".")
+	:endif
+	:badd $MYVIMRC
+	:execute "b!" $MYVIMRC
 endfunction
 
 function CloseVimrc()
-  :exe "bwipe!" $MYVIMRC
-  :exe "b!" w:prev_vimrc_buff
-  :unlet w:prev_vimrc_buff
+	:exe "bwipe!" $MYVIMRC
+	:exe "b!" w:prev_vimrc_buff
+	:unlet w:prev_vimrc_buff
 endfunction
+
+map gf :edit <cfile><cr>
 
 nmap <leader>ve :execute OpenVimrc()<cr>
 nmap <leader>vr :source $MYVIMRC<cr>
 nmap <leader>vq :execute CloseVimrc()<cr>:call setpos(".", w:prev_vimrc_pos)<cr>:unlet w:prev_vimrc_pos<cr>
 
-map gf :edit <cfile><cr>
-
-"change inside next parenthesis
-onoremap in( :<c-u>normal! f(vi(<cr>
-" change inside previous(last) parenthesis
-onoremap il( :<c-u>normal! F(vi(<cr>
-" short hand p - i( for change in paranthesis
-onoremap p i(
-" use j k as <esc> to exit to normal mode, disable <esc>
-inoremap jk <esc>
-inoremap <esc> <nop>
-" comment and uncomment code
-noremap gc :call Comment()<CR>
-noremap gC : call Uncomment()<CR>
-" unhighlight after search
 nnoremap <Leader><space> :nohl<cr>
-nnoremap <Leader>wq :wq<cr>
-nnoremap <Leader>w :w<cr>
-" tab manipulations
 nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>p :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
-" Buffer switching
-nnoremap <D-Right> :bnext<CR>
-nnoremap <M-Right> :bnext<CR>
-nnoremap <D-Left> :bprevious<CR>
-nnoremap <M-Left> :bprevious<CR>
-" and don't let MacVim remap them
-if has("gui_macvim")
-	let macvim_skip_cmd_opt_movement = 1
-endif
-" copy from vim to system clipboard
-vnoremap <c-c>	"+y
 
-" End of Yunlan's Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap jk <esc>
+
+vnoremap <c-c> "+y

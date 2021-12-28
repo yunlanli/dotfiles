@@ -1,34 +1,33 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
+filetype off
+
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'arcticicestudio/nord-vim'                          " Nord Color Theme
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'                      " :GBrowse opens up GitHub
+Plugin 'tpope/vim-rhubarb'                                 ":GBrowse opens up GitHub
+Plugin 'preservim/nerdtree'
 
-Plugin 'arcticicestudio/nord-vim'		" Nord Color Theme
-Plugin 'yuezk/vim-js'                           " syntax highlighting enhancement for jsx
-Plugin 'maxmellon/vim-jsx-pretty'               " syntax highlighting enchancement for javascript
-Plugin 'pangloss/vim-javascript'
-
-Plugin 'lervag/vimtex'                          " writing, compiling latex in vim
-Plugin 'KeitaNakamura/tex-conceal.vim'          " for better latex conceal
-
-Plugin 'preservim/nerdtree'                     " NERDTree file explorer
-Plugin 'junegunn/fzf'				" Fuzzy File Finder
-Plugin 'junegunn/fzf.vim'
-Plugin 'tpope/vim-surround'			" make manipulating surroundings easy
-
-Plugin 'dense-analysis/ale'			" Linter
+Plugin 'lervag/vimtex'                                     " writing, compiling latex in vim
+Plugin 'KeitaNakamura/tex-conceal.vim'                     " for better latex conceal
 
 if !has("nvim")
-  Plugin 'ycm-core/YouCompleteMe'		" Auto Completion
-  Plugin 'Sirver/ultisnips'                     " for writing snippets for latex
+	Plugin 'junegunn/fzf'                                  " Fuzzy File Finder
+	Plugin 'junegunn/fzf.vim'
+	Plugin 'dense-analysis/ale'                            " Linter
+	Plugin 'ycm-core/YouCompleteMe'                        " Auto Completion
+	Plugin 'Sirver/ultisnips'                              " snippets
 endif
 
-call vundle#end()           " required
-filetype plugin indent on   " required
+if has("nvim")
+	Plugin 'nvim-lua/plenary.nvim'                         " Telescope reqs (Finder)
+	Plugin 'nvim-telescope/telescope.nvim'
+	Plugin 'nvim-telescope/telescope-fzy-native.nvim'
+endif
+
+call vundle#end()
+
+filetype plugin indent on

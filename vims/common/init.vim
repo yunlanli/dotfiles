@@ -1,5 +1,4 @@
 source plugin.vim
-source base.vim
 source yl.vim
 
 source plugin/nerdtree.vim
