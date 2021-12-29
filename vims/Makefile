@@ -37,7 +37,7 @@ vimrc:
 .PHONY: nvimrc
 nvimrc:
 	# create init.vim
-	test -f $(NVIMRC) && rm -f $(NVIMRC)
+	if [ -f $(NVIMRC) ]; then rm -f $(NVIMRC); fi
 	sed "s#source #source `pwd`/common/#" common/init.vim  > $(NVIMRC)
 	echo >> $(NVIMRC)
 	sed "s#source #source `pwd`/nvim/#" nvim/init.vim >> $(NVIMRC)
