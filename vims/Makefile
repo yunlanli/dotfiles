@@ -1,5 +1,9 @@
+VUNDLE_URL=https://github.com/VundleVim/Vundle.vim.git
+VUNDLE=~/.vim/bundle/Vundle.vim
 VIMRC=~/.vimrc
-NVIMRC=~/.config/nvim/init.vim
+NVIM_HOME=~/.config/nvim
+NVIMRC=$(NVIM_HOME)/init.vim
+NVIMRC_LUA=$(NVIM_HOME)/lua
 
 .PHONY: all
 all: backup vundle vimrc nvimrc install
@@ -12,8 +16,7 @@ nvim: backup vundle nvimrc install
 
 .PHONY: vundle
 vundle:
-	test -d ~/.vim/bundle/Vundle.vim || \
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	if [ ! -d $(VUNDLE) ]; then git clone $(VUNDLE_URL) $(VUNDLE); fi
 
 .PHONY: install
 install:
@@ -22,18 +25,22 @@ install:
 # creates ~/.backup to avoid .vim*~ files littering the cwd
 .PHONY: backup
 backup:
-	test -d ~/.backup || mkdir ~/.backup
+	if [ ! -d ~/.backup ]; then mkdir ~/.backup; fi
 
 .PHONY: vimrc
 vimrc:
-	test -f ~/.vimrc && rm -f ~/.vimrc
+	if [ -f ~/.vimrc ]; then rm -f ~/.vimrc; fi
 	sed "s#source #source `pwd`/common/#" common/init.vim  > $(VIMRC)
 	echo >> $(VIMRC)
 	sed "s#source #source `pwd`/vim/#" vim/init.vim >> $(VIMRC)
 
 .PHONY: nvimrc
 nvimrc:
+	# create init.vim
 	test -f $(NVIMRC) && rm -f $(NVIMRC)
 	sed "s#source #source `pwd`/common/#" common/init.vim  > $(NVIMRC)
 	echo >> $(NVIMRC)
 	sed "s#source #source `pwd`/nvim/#" nvim/init.vim >> $(NVIMRC)
+	# link lua directory
+	if [ -d $(NVIMRC_LUA) ]; then rm -rf $(NVIMRC_LUA); fi
+	ln -s `pwd`/nvim/lua $(NVIMRC_LUA)

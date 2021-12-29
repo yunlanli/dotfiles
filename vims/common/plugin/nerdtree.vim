@@ -1,1 +1,1 @@
-map <Leader>f   :NERDTreeToggle<CR>
+map <Leader>ft	:NERDTreeToggle<cr>
