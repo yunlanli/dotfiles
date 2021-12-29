@@ -6,13 +6,13 @@ NVIMRC=$(NVIM_HOME)/init.vim
 NVIMRC_LUA=$(NVIM_HOME)/lua
 
 .PHONY: all
-all: backup vundle vimrc nvimrc install
+all: backup vundle vimrc nvimrc install ultisnip
 
 .PHONY: vim
-vim: backup vundle vimrc install
+vim: backup vundle vimrc install ultisnip
 
 .PHONY: nvim
-nvim: backup vundle nvimrc install
+nvim: backup vundle nvimrc install ultisnip
 
 .PHONY: vundle
 vundle:
@@ -26,6 +26,11 @@ install:
 .PHONY: backup
 backup:
 	if [ ! -d ~/.backup ]; then mkdir ~/.backup; fi
+
+.PHONY: ultisnip
+ultisnip:
+	if [ -L ~/.vim/UltiSnips ]; then rm ~/.vim/UltiSnips; fi
+	ln -s `pwd`/common/plugin/UltiSnips ~/.vim/UltiSnips
 
 .PHONY: vimrc
 vimrc:
