@@ -55,7 +55,7 @@ nmap <leader>vq :execute CloseVimrc()<cr>:call setpos(".", w:prev_vimrc_pos)<cr>
 
 nnoremap <Leader><space> :nohl<cr>
 nnoremap <Leader>n :tabn<cr>
-nnoremap <Leader>p :tabp<cr>
+nnoremap <Leader>N :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
 
 inoremap jk <esc>

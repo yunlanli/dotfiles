@@ -26,6 +26,7 @@ if has("nvim")
 	Plugin 'nvim-lua/plenary.nvim'                         " Telescope reqs (Finder)
 	Plugin 'nvim-telescope/telescope.nvim'
 	Plugin 'nvim-telescope/telescope-fzy-native.nvim'
+	Plugin 'neovim/nvim-lspconfig'
 endif
 
 call vundle#end()
