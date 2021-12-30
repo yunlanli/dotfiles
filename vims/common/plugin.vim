@@ -26,6 +26,7 @@ if has("nvim")
 	Plugin 'nvim-lua/plenary.nvim'                         " Telescope reqs (Finder)
 	Plugin 'nvim-telescope/telescope.nvim'
 	Plugin 'nvim-telescope/telescope-fzy-native.nvim'
+	Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plugin 'neovim/nvim-lspconfig'
 	Plugin 'hrsh7th/cmp-nvim-lsp'                          " Auto-completion
 	Plugin 'hrsh7th/cmp-buffer'
