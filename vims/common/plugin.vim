@@ -25,7 +25,7 @@ endif
 if has("nvim")
 	Plugin 'nvim-lua/plenary.nvim'                         " Telescope reqs (Finder)
 	Plugin 'nvim-telescope/telescope.nvim'
-	Plugin 'nvim-telescope/telescope-fzy-native.nvim'
+	Plugin 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 	Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plugin 'nvim-treesitter/playground'
 	Plugin 'norcalli/nvim-colorizer.lua'
