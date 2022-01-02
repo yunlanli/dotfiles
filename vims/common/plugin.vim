@@ -38,7 +38,8 @@ if has("nvim")
 	Plugin 'hrsh7th/cmp-cmdline'
 	Plugin 'hrsh7th/nvim-cmp'
 	Plugin 'quangnguyen30192/cmp-nvim-ultisnips'
-	Plugin 'nvim-lualine/lualine.nvim'                          " Status Line
+	Plugin 'nvim-lualine/lualine.nvim'                     " Status Line
+	Plugin 'numToStr/Comment.nvim'                         " Code Comment
 endif
 
 call vundle#end()
