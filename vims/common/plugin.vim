@@ -27,8 +27,12 @@ if has("nvim")
 	Plugin 'nvim-telescope/telescope.nvim'
 	Plugin 'nvim-telescope/telescope-fzy-native.nvim'
 	Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plugin 'nvim-treesitter/playground'
+	Plugin 'norcalli/nvim-colorizer.lua'
 	Plugin 'neovim/nvim-lspconfig'
 	Plugin 'hrsh7th/cmp-nvim-lsp'                          " Auto-completion
+	Plugin 'hrsh7th/cmp-nvim-lua'
+	Plugin 'onsails/lspkind-nvim'
 	Plugin 'hrsh7th/cmp-buffer'
 	Plugin 'hrsh7th/cmp-path'
 	Plugin 'hrsh7th/cmp-cmdline'
