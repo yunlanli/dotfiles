@@ -1,4 +1,6 @@
 local Path = require "plenary.path"
+local actions = require "telescope.actions"
+local action_state = require "telescope.actions.state"
 
 require('telescope').setup {
 	defaults = {
@@ -11,7 +13,52 @@ require('telescope').setup {
 			height = 0.8,
 		},
 	},
-	pickers = { },
+	pickers = {
+		file_browser = {
+			layout_strategy = "bottom_pane",
+			layout_config = {
+				height = 0.25,
+			},
+			mappings = {
+				n = {
+					-- open a new tab, set its dir to selected dir
+					-- open find_files picker for user to open a file
+					["<c-o>"] = function (prompt_bufnr)
+						local selected_entry = action_state.get_selected_entry()
+						local selected_dir = selected_entry.cwd .. '/' .. selected_entry.ordinal
+
+						actions.close(prompt_bufnr)
+
+						vim.cmd [[ tabnew ]]
+						vim.t.cwd = selected_dir
+						vim.cmd [[ exe "lcd" t:cwd ]]
+						require('telescope.builtin').find_files()
+					end
+				}
+			}
+		},
+		buffers = {
+			mappings = {
+				n = {
+					-- forcefully wipeout selected buffers
+					["<c-d>"] = function (prompt_bufnr)
+						local picker = action_state.get_current_picker(prompt_bufnr)
+
+						local buf_entries = {}
+						for _, entry in ipairs(picker:get_multi_selection()) do
+							table.insert(buf_entries, entry)
+						end
+
+						for _, entry in ipairs(buf_entries) do
+							vim.api.nvim_buf_delete(entry.bufnr, { force = true })
+						end
+
+						actions.close(prompt_bufnr)
+					end
+				}
+			}
+		}
+	},
 	extensions = {
 		fzf = {
 			override_generic_sorter = true,
@@ -37,6 +84,13 @@ M.search_dotfiles = function ()
 			return Path:new(transformed_path):shorten(shorten.len, shorten.exclude)
 		end,
 	})
+end
+
+M.search_nvim_plugins = function ()
+	require("telescope.builtin").file_browser {
+		prompt_title = "~nvim plugin source code~",
+		cwd = "~/.vim/bundle",
+	}
 end
 
 return M

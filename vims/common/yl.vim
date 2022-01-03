@@ -27,6 +27,7 @@ autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
 autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
 autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
 autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
+autocmd FileType lua              setlocal shiftwidth=2 tabstop=2 textwidth=80
 
 
 let mapleader=" "

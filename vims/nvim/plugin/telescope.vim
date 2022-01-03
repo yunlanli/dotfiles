@@ -1,8 +1,9 @@
 " file pickers
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>pb <cmd>lua require('telescope.builtin').file_browser()<cr>
+nnoremap <leader>pa <cmd>lua require('telescope.builtin').file_browser()<cr>
 nnoremap <leader>pc <cmd>lua require('yunlan.telescope').search_dotfiles()<cr>
+nnoremap <leader>pnp <cmd>lua require('yunlan.telescope').search_nvim_plugins()<cr>
 
 " lsp pickers
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
