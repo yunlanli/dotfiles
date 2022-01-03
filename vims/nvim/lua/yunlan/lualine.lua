@@ -1,11 +1,10 @@
---[[
--- TODO:
---   - filetype ICONS before filename would be nice!
---]]
 local lualine = require 'lualine'
+local devicons = require 'nvim-web-devicons'
 
 -- Color table for highlights
 -- stylua: ignore
+
+local _, ftp_color = devicons.get_icon_color("", vim.o.filetype)
 local colors = {
 	bg       = '#202328',
 	fg       = '#bbc2cf',
@@ -18,7 +17,12 @@ local colors = {
 	magenta  = '#c678dd',
 	blue     = '#51afef',
 	red      = '#ec5f67',
+	ftp      = ftp_color,
 }
+
+function get_ftp_icon()
+	return devicons.get_icon("", vim.o.filetype, { default = true })
+end
 
 lualine.setup {
 	options = {
@@ -47,6 +51,11 @@ lualine.setup {
 		lualine_c = {
 			'%=',
 			{
+				get_ftp_icon,
+				color = { fg = colors.ftp },
+				padding = { right = -1 }
+			},
+			{
 				'filename',
 				file_status = true,
 				path = 1,
@@ -55,12 +64,15 @@ lualine.setup {
 					modified = ' [+]',
 					readonly = ' [-]',
 					unnamed = '[No Name]'
-				}
+				},
 			}
 		},
 		lualine_x = {},
 		lualine_y = {
-			'filetype',
+			{
+				'filetype',
+				icons_enabled = false,
+			},
 			'encoding'
 		},
 		lualine_z = { 'progress', 'location' },
@@ -72,6 +84,11 @@ lualine.setup {
 		lualine_c = {
 			'%=',
 			{
+				get_ftp_icon,
+				color = { fg = colors.ftp },
+				padding = { right = -1 }
+			},
+			{
 				'filename',
 				file_status = true,
 				path = 1,
@@ -80,7 +97,7 @@ lualine.setup {
 					modified = ' [+]',
 					readonly = ' [-]',
 					unnamed = '[No Name]'
-				}
+				},
 			}
 		},
 		lualine_x = {'%='},
