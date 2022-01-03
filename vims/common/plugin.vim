@@ -30,6 +30,7 @@ if has("nvim")
 	Plugin 'nvim-treesitter/playground'
 	Plugin 'norcalli/nvim-colorizer.lua'
 	Plugin 'neovim/nvim-lspconfig'
+	Plugin 'glepnir/lspsaga.nvim'
 	Plugin 'hrsh7th/cmp-nvim-lsp'                          " Auto-completion
 	Plugin 'hrsh7th/cmp-nvim-lua'
 	Plugin 'onsails/lspkind-nvim'
@@ -41,6 +42,7 @@ if has("nvim")
 	Plugin 'nvim-lualine/lualine.nvim'                     " Status Line
 	Plugin 'kyazdani42/nvim-web-devicons'
 	Plugin 'numToStr/Comment.nvim'                         " Code Comment
+	Plugin 'ThePrimeagen/harpoon'                          " Navigation
 endif
 
 call vundle#end()
