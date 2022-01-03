@@ -15,19 +15,22 @@ set mouse="a"
 syntax enable
 colorscheme nord
 
-autocmd FileType help             setlocal nospell
-autocmd FileType text,markdown    setlocal textwidth=80 spell spelllang=en_us
+augroup filetype_settings
+	autocmd!
+	autocmd FileType help             setlocal nospell
+	autocmd FileType text,markdown    setlocal textwidth=80 spell spelllang=en_us
 
-autocmd FileType tex              setlocal textwidth=100 spell spelllang=en_us
-autocmd FileType tex              normal ;ll
-autocmd TextChanged,TextChangedI  *.tex silent :write
+	autocmd FileType tex              setlocal textwidth=100 spell spelllang=en_us
+	autocmd FileType tex              normal ;ll
+	autocmd TextChanged,TextChangedI  *.tex silent :write
 
-autocmd FileType c,cpp            setlocal textwidth=80
-autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
-autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
-autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
-autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
-autocmd FileType lua              setlocal shiftwidth=2 tabstop=2 textwidth=80
+	autocmd FileType c,cpp            setlocal textwidth=80
+	autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType lua              setlocal shiftwidth=2 tabstop=2 textwidth=80
+augroup END
 
 
 let mapleader=" "
@@ -54,6 +57,17 @@ nmap <leader>ve :execute OpenVimrc()<cr>
 nmap <leader>vr :source $MYVIMRC<cr>
 nmap <leader>vq :execute CloseVimrc()<cr>:call setpos(".", w:prev_vimrc_pos)<cr>:unlet w:prev_vimrc_pos<cr>
 
+nnoremap Y y$
+nnoremap n nz<cr>3k3jzv
+nnoremap N Nz<cr>3k3jzv
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <A-up>    :resize +10<cr>
+nnoremap <A-down>  :resize -10<cr>
+nnoremap <A-left>  :vert resize -10<cr>
+nnoremap <A-right> :vert resize +10<cr>
 nnoremap <Leader><space> :nohl<cr>
 nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>N :tabp<cr>
@@ -62,3 +76,8 @@ nnoremap <Leader>c :tabc<cr>
 inoremap jk <esc>
 
 vnoremap <c-c> "+y
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
+augroup END
