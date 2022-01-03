@@ -2,6 +2,40 @@ local Path = require "plenary.path"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
+local function set_selected_dir(opt)
+	opt = opt or {}
+
+	return function (prompt_bufnr)
+		local selected_entry = action_state.get_selected_entry()
+		local selected_dir = selected_entry.cwd .. '/' .. selected_entry.ordinal
+
+		actions.close(prompt_bufnr)
+
+		if opt.new_tab then
+			vim.cmd [[ tabnew ]]
+		end
+
+		vim.t.cwd = selected_dir
+		vim.cmd [[ exe "lcd" t:cwd ]]
+		require('telescope.builtin').find_files()
+	end
+end
+
+local function delete_selected_bufs(prompt_bufnr)
+	local picker = action_state.get_current_picker(prompt_bufnr)
+
+	local buf_entries = {}
+	for _, entry in ipairs(picker:get_multi_selection()) do
+		table.insert(buf_entries, entry)
+	end
+
+	for _, entry in ipairs(buf_entries) do
+		vim.api.nvim_buf_delete(entry.bufnr, { force = true })
+	end
+
+	actions.close(prompt_bufnr)
+end
+
 require('telescope').setup {
 	defaults = {
 		prompt_prefix = "❯ ",
@@ -20,41 +54,24 @@ require('telescope').setup {
 				height = 0.25,
 			},
 			mappings = {
+				i = {
+					["<c-o>"] = set_selected_dir(),
+					["<c-t>"] = set_selected_dir { new_tab = true }
+				},
 				n = {
-					-- open a new tab, set its dir to selected dir
-					-- open find_files picker for user to open a file
-					["<c-o>"] = function (prompt_bufnr)
-						local selected_entry = action_state.get_selected_entry()
-						local selected_dir = selected_entry.cwd .. '/' .. selected_entry.ordinal
-
-						actions.close(prompt_bufnr)
-
-						vim.cmd [[ tabnew ]]
-						vim.t.cwd = selected_dir
-						vim.cmd [[ exe "lcd" t:cwd ]]
-						require('telescope.builtin').find_files()
-					end
+					["o"] = set_selected_dir(),
+					["<s-o>"] = set_selected_dir { new_tab = true }
 				}
 			}
 		},
 		buffers = {
 			mappings = {
-				n = {
+				i = {
 					-- forcefully wipeout selected buffers
-					["<c-d>"] = function (prompt_bufnr)
-						local picker = action_state.get_current_picker(prompt_bufnr)
-
-						local buf_entries = {}
-						for _, entry in ipairs(picker:get_multi_selection()) do
-							table.insert(buf_entries, entry)
-						end
-
-						for _, entry in ipairs(buf_entries) do
-							vim.api.nvim_buf_delete(entry.bufnr, { force = true })
-						end
-
-						actions.close(prompt_bufnr)
-					end
+					["<c-d>"] = delete_selected_bufs,
+				},
+				n = {
+					["d"] = delete_selected_bufs,
 				}
 			}
 		}
