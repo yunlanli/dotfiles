@@ -105,8 +105,15 @@ end
 
 M.search_nvim_plugins = function ()
 	require("telescope.builtin").file_browser {
-		prompt_title = "~nvim plugin source code~",
+		prompt_title = "~ nvim plugin source code ~",
 		cwd = "~/.vim/bundle",
+	}
+end
+
+M.search_projects = function ()
+	require("telescope.builtin").file_browser {
+		prompt_title = "~ projects ~",
+		cwd = "~/Code",
 	}
 end
 
