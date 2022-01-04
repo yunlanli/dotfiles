@@ -74,6 +74,10 @@ nnoremap <Leader>N :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
 
 inoremap jk <esc>
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
 
 vnoremap <c-c> "+y
 

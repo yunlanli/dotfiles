@@ -11,6 +11,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'                                 ":GBrowse opens up GitHub
 Plugin 'preservim/nerdtree'
 Plugin 'vuciv/vim-bujo'                                    " Per-repo todo list
+Plugin 'mhinz/vim-startify'
 
 Plugin 'lervag/vimtex'                                     " writing, compiling latex in vim
 Plugin 'KeitaNakamura/tex-conceal.vim'                     " for better latex conceal
