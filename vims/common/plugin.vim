@@ -45,6 +45,9 @@ if has("nvim")
 	Plugin 'kyazdani42/nvim-web-devicons'
 	Plugin 'numToStr/Comment.nvim'                         " Code Comment
 	Plugin 'ThePrimeagen/harpoon'                          " Navigation
+	Plugin 'mfussenegger/nvim-dap'                         " Debugging
+	Plugin 'rcarriga/nvim-dap-ui'
+	Plugin 'mfussenegger/nvim-dap-python'
 endif
 
 call vundle#end()
