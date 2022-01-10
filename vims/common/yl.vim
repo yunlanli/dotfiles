@@ -12,6 +12,8 @@ set ai noet sw=8 ts=8 sts=0
 set ignorecase
 set hlsearch
 set mouse="a"
+set list
+set listchars=tab:→\ ,eol:↲,trail:•,nbsp:␣
 syntax enable
 colorscheme nord
 
@@ -64,10 +66,10 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-nnoremap <A-up>    :resize +10<cr>
-nnoremap <A-down>  :resize -10<cr>
-nnoremap <A-left>  :vert resize -10<cr>
-nnoremap <A-right> :vert resize +10<cr>
+nnoremap <A-up>    :resize +5<cr>
+nnoremap <A-down>  :resize -5<cr>
+nnoremap <A-left>  :vert resize -5<cr>
+nnoremap <A-right> :vert resize +5<cr>
 nnoremap <Leader><space> :nohl<cr>
 nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>N :tabp<cr>
@@ -80,8 +82,3 @@ vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
 
 vnoremap <c-c> "+y
-
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
-augroup END
