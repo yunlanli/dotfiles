@@ -1,10 +1,15 @@
 local lualine = require 'lualine'
 local devicons = require 'nvim-web-devicons'
 
+local path_comps = vim.fn.split(vim.fn.expand("%"), "/")
+local filename = path_comps[#path_comps]
+local fn_comps = vim.fn.split(filename, "\\.")
+local fn_suffix = fn_comps[#fn_comps]
+
 -- Color table for highlights
 -- stylua: ignore
 
-local _, ftp_color = devicons.get_icon_color("", vim.o.filetype)
+local _, ftp_color = devicons.get_icon_color("", fn_suffix)
 local colors = {
 	bg       = '#202328',
 	fg       = '#bbc2cf',
@@ -20,8 +25,8 @@ local colors = {
 	ftp      = ftp_color,
 }
 
-function get_ftp_icon()
-	return devicons.get_icon("", vim.o.filetype, { default = true })
+local function get_ftp_icon()
+	return devicons.get_icon("", fn_suffix, { default = true })
 end
 
 lualine.setup {
@@ -79,8 +84,29 @@ lualine.setup {
 	},
 
 	inactive_sections = {
-		lualine_a = {},
-		lualine_b = { 'branch' },
+		lualine_a = {
+			{
+				'mode',
+				color = { fg = '#ffffff', bg = '#333a48' }
+			}
+		},
+		lualine_b = {
+			{
+				'branch',
+				color = { fg = '#ffffff', bg = '#333a48' }
+			},
+			{
+				'diagnostics',
+				sources = { 'nvim_diagnostic' },
+				symbols = { error = ' ', warn = ' ', info = ' ' },
+				diagnostics_color = {
+					color_error = { fg = colors.red },
+					color_warn = { fg = colors.yellow },
+					color_info = { fg = colors.cyan },
+				},
+				color = { fg = '#ffffff', bg = '#333a48' }
+			},
+		},
 		lualine_c = {
 			'%=',
 			{
@@ -100,8 +126,23 @@ lualine.setup {
 				},
 			}
 		},
-		lualine_x = {'%='},
-		lualine_y = {},
-		lualine_z = {},
-	}
+		lualine_x = { },
+		lualine_y = {
+			{
+				'filetype',
+				icons_enabled = false,
+			},
+			'encoding'
+		},
+		lualine_z = {
+			{
+				'progress',
+				color = { fg = '#ffffff', bg = '#333a48' }
+			},
+			{
+				'location',
+				color = { fg = '#ffffff', bg = '#333a48' }
+			}
+		},
+	},
 }
