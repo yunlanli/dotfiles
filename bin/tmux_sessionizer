@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    dir_d0=`find ~/.dotfiles ~/Code/Notes -mindepth 0 -maxdepth 0 -type d`
+    dir_d1=`find ~/Code/fun ~/Code/opt ~/Code/Spectator -mindepth 1 -maxdepth 1 -type d`
+    dir_d2=`find ~/Code/cs@columbia -mindepth 2 -maxdepth 2 -type d`
+    selected=$(echo "$dir_d0 $dir_d1 $dir_d2" | tr ' ' '\n' | fzf --reverse --height=20 --border=sharp)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+# echo "selected: $selected, selected_name: $selected_name, tmux_running: $tmux_running"
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+if ! tmux has-session -t $selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t $selected_name
+else
+    tmux switch-client -t $selected_name
+fi
