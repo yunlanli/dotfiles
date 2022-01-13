@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'arcticicestudio/nord-vim'                          " Nord Color Theme
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'                                 ":GBrowse opens up GitHub
-Plugin 'preservim/nerdtree'
 Plugin 'vuciv/vim-bujo'                                    " Per-repo todo list
 Plugin 'mhinz/vim-startify'
 
@@ -18,6 +17,7 @@ Plugin 'KeitaNakamura/tex-conceal.vim'                     " for better latex co
 Plugin 'Sirver/ultisnips'                                  " snippets
 
 if !has("nvim")
+	Plugin 'preservim/nerdtree'
 	Plugin 'junegunn/fzf'                                  " Fuzzy File Finder
 	Plugin 'junegunn/fzf.vim'
 	Plugin 'dense-analysis/ale'                            " Linter
@@ -30,6 +30,7 @@ if has("nvim")
 	Plugin 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 	Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plugin 'nvim-treesitter/playground'
+	Plugin 'kyazdani42/nvim-tree.lua'
 	Plugin 'norcalli/nvim-colorizer.lua'
 	Plugin 'neovim/nvim-lspconfig'
 	Plugin 'glepnir/lspsaga.nvim'
