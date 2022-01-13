@@ -14,6 +14,7 @@ set hlsearch
 set mouse="a"
 set list
 set listchars=tab:→\ ,eol:↲,trail:•,nbsp:␣
+set termguicolors
 syntax enable
 colorscheme nord
 
@@ -76,9 +77,9 @@ nnoremap <Leader>N :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
 
 inoremap jk <esc>
-inoremap <M-j> <Esc>:m .+1<CR>==gi
-inoremap <M-k> <Esc>:m .-2<CR>==gi
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
+nnoremap <s-up> <Esc>:m .-2<CR>==gi
+nnoremap <s-down> <Esc>:m .+1<CR>==gi
+vnoremap <s-down> :m '>+1<CR>gv=gv
+vnoremap <s-up> :m '<-2<CR>gv=gv
 
 vnoremap <c-c> "+y
