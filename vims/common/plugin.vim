@@ -51,6 +51,7 @@ if has("nvim")
 	Plugin 'mfussenegger/nvim-dap-python'
 	Plugin 'TimUntersberger/neogit'                        " Nvim clone of emacs magit
 	Plugin 'lewis6991/gitsigns.nvim'
+	Plugin 'folke/trouble.nvim'                            " Prettier {qf|loc}list
 endif
 
 call vundle#end()

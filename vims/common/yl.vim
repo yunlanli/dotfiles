@@ -82,4 +82,9 @@ nnoremap <s-down> <Esc>:m .+1<CR>==gi
 vnoremap <s-down> :m '>+1<CR>gv=gv
 vnoremap <s-up> :m '<-2<CR>gv=gv
 
+nnoremap [q :cprev<cr>
+nnoremap ]q :cnext<cr>
+nnoremap [l :lprev<cr>
+nnoremap ]l :lnext<cr>
+
 vnoremap <c-c> "+y
