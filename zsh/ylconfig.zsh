@@ -56,6 +56,7 @@ alias fzf="fzf \
 	--color='marker:#EBCB8B:regular,marker:bold,marker:italic'"
 
 alias g="git"
+alias gw="git worktree"
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"

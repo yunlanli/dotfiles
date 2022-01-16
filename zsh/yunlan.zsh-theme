@@ -17,7 +17,7 @@ precmd()
 # TODO: make RPROMPT on the same row as the first row of PROMPT
 RPROMPT="$(current_time)$(return_status)"
 PROMPT=' %{$FG[002]%}%4~%{$reset_color%} $(git_prompt_info)
-%(?:%{$FG[005]%}➜ :%{$FG[001]%}➜ )%{$reset_color%}'
+%(?:%{$FG[005]%}❯ : %{$FG[001]%}❯ )%{$reset_color%}'
 
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
