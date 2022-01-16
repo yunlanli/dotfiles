@@ -36,6 +36,16 @@ local function delete_selected_bufs(prompt_bufnr)
 	actions.close(prompt_bufnr)
 end
 
+
+
+-- Wrapper around telescope.actions.smart_send_to_qflist
+-- opens quickfix list using trouble.nvim afterwards
+local function smart_send_to_qflist(prompt_bufnr)
+	require 'telescope.actions'.smart_send_to_qflist(prompt_bufnr)
+	vim.cmd [[ Trouble quickfix ]]
+end
+
+
 require('telescope').setup {
 	defaults = {
 		prompt_prefix = "❯ ",
@@ -74,7 +84,14 @@ require('telescope').setup {
 					["d"] = delete_selected_bufs,
 				}
 			}
-		}
+		},
+		live_grep = {
+			mappings = {
+				n = {
+					["q"] = smart_send_to_qflist,
+				}
+			}
+		},
 	},
 	extensions = {
 		fzf = {
