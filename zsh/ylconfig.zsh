@@ -33,7 +33,13 @@ export PATH="~/.emacs.d/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm@11/bin:$PATH"
 
-export FZF_DEFAULT_COMMAND='find .'
+export FZF_DEFAULT_COMMAND="fd ."
+export FZF_DEFAULT_OPTS="\
+	--reverse --height=20 --border=sharp \
+	--color='bw,hl:#A3BE8C:regular,hl:bold' \
+	--color='query:#8FBCBB,pointer:#B48EAD' \
+	--color='gutter:#2E3440,hl+:#A3BE8C' \
+	--color='marker:#EBCB8B:regular,marker:bold,marker:italic'"
 
 # To use the bundled libc++ please add the following LDFLAGS:
 export LDFLAGS="$LDFALGS -L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/opt/homebrew/opt/llvm/lib"
@@ -48,12 +54,6 @@ export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/llvm/include"
 alias cat="bat"
 alias ll="ls -alf"
 alias nv="nvim"
-alias fzf="fzf \
-	--reverse --height=20 --border=sharp \
-	--color='bw,hl:#A3BE8C:regular,hl:bold' \
-	--color='query:#8FBCBB,pointer:#B48EAD' \
-	--color='gutter:#2E3440,hl+:#A3BE8C' \
-	--color='marker:#EBCB8B:regular,marker:bold,marker:italic'"
 
 alias g="git"
 alias gw="git worktree"
@@ -116,7 +116,7 @@ fcd()
 		root_dir=. 
 	fi
 
-	dir=`find $root_dir 2>/dev/null | fzf`
+	dir=`fd $root_dir 2>/dev/null | fzf`
 	cd $dir
 }
 
