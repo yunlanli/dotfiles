@@ -54,6 +54,7 @@ export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/llvm/include"
 alias cat="bat"
 alias ll="ls -alf"
 alias nv="nvim"
+alias env="env | cut -d "=" -f 1 | fzf | xargs printenv"
 
 alias g="git"
 alias gw="git worktree"
