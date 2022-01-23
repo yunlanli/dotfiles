@@ -2,4 +2,4 @@
 -- Use iTerm on Mac OS instead
 vim.opt.termguicolors = true
 
-require('colorizer').setup()
+require('colorizer').setup({ '*'; }, { names = false; })
