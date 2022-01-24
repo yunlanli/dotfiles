@@ -16,11 +16,12 @@ Plugin 'lervag/vimtex'                                     " writing, compiling 
 Plugin 'KeitaNakamura/tex-conceal.vim'                     " for better latex conceal
 Plugin 'Sirver/ultisnips'                                  " snippets
 
+Plugin 'dense-analysis/ale'                                " Linter
+
 if !has("nvim")
 	Plugin 'preservim/nerdtree'
 	Plugin 'junegunn/fzf'                                  " Fuzzy File Finder
 	Plugin 'junegunn/fzf.vim'
-	Plugin 'dense-analysis/ale'                            " Linter
 	Plugin 'ycm-core/YouCompleteMe'                        " Auto Completion
 endif
 

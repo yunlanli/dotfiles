@@ -2,6 +2,7 @@ let g:ale_lint_on_save	= 1
 let g:ale_fix_on_save	= 1
 
 let g:ale_fixers = {
-\   'ocaml':	['ocamlformat'],
-\   '*':	['remove_trailing_lines', 'trim_whitespace']
+\   'ocaml': ['ocamlformat'],
+\	'go': ['gofmt'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
