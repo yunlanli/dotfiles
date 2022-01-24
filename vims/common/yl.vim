@@ -1,4 +1,5 @@
 set nocompatible
+set backspace=indent,eol,start
 set nu rnu
 set encoding=utf-8
 set ruler
@@ -13,7 +14,7 @@ set ignorecase
 set hlsearch
 set mouse="a"
 set list
-set listchars=tab:→\ ,eol:↲,trail:•,nbsp:␣
+set listchars=tab:\ \ ,eol:↲,trail:•,nbsp:␣
 set termguicolors
 syntax enable
 colorscheme nord
@@ -23,12 +24,13 @@ augroup filetype_settings
 	autocmd FileType help             setlocal nospell
 	autocmd FileType text,markdown    setlocal textwidth=80 spell spelllang=en_us
 
-	autocmd FileType tex              setlocal textwidth=100 spell spelllang=en_us
+	autocmd FileType tex              setlocal shiftwidth=4 tabstop=4 textwidth=100 nospell
 	autocmd FileType tex              normal ;ll
 	autocmd TextChanged,TextChangedI  *.tex silent :write
 
 	autocmd FileType c,cpp            setlocal textwidth=80
 	autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType go               setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
