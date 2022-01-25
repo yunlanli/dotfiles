@@ -62,4 +62,4 @@ vim.diagnostic.config {
 	-- underline = false,
 	severity_sort = false,
 }
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false,})]]
+vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false,})]]
