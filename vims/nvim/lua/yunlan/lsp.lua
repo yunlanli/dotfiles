@@ -48,3 +48,18 @@ for _, lsp in ipairs(servers) do
 		}
 	}
 end
+
+
+--
+-- UI customization
+--
+
+-- show line diagnostics automatically in hover window
+-- disable inline virutal text
+vim.o.updatetime = 250
+vim.diagnostic.config {
+	virtual_text = false,
+	-- underline = false,
+	severity_sort = false,
+}
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false,})]]
