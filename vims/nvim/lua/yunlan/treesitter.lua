@@ -7,6 +7,8 @@ require'nvim-treesitter.configs'.setup {
 
 	highlight = {
 		enable = true,
+		-- vimtex relies on the syntax file to determine syntax zones
+		disable = { 'latex', 'bibtex' },
 		additional_vim_regex_highlighting = false,
 	},
 
