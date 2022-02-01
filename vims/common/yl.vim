@@ -89,4 +89,6 @@ nnoremap ]q :cnext<cr>
 nnoremap [l :lprev<cr>
 nnoremap ]l :lnext<cr>
 
+inoremap <localleader>s <c-g>u<esc>m0[s1z=`0a<c-g>u
+
 vnoremap <c-c> "+y
