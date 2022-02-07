@@ -6,7 +6,7 @@ else
     dir_d0=`find ~/.dotfiles ~/Code/Notes -mindepth 0 -maxdepth 0 -type d`
     dir_d1=`find ~/Code/fun ~/Code/opt ~/Code/Spectator -mindepth 1 -maxdepth 1 -type d`
     dir_d2=`find ~/Code/cs@columbia -mindepth 2 -maxdepth 2 -type d`
-    selected=$(echo "$dir_d0 $dir_d1 $dir_d2" | tr ' ' '\n' | fzf --reverse --height=20 --border=sharp)
+    selected=$(echo "$dir_d0 $dir_d1 $dir_d2" | tr ' ' '\n' | fzf)
 fi
 
 if [[ -z $selected ]]; then

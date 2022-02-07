@@ -27,11 +27,14 @@ setopt share_history
 ################################################################################
 #  Env Vars
 ################################################################################
+export GOPATH="$HOME/go"
+export GOBIN="$HOME/go/bin"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export PATH="~/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm@11/bin:$PATH"
+export PATH="$GOBIN:$PATH"
 
 export FZF_DEFAULT_COMMAND="fd ."
 export FZF_DEFAULT_OPTS="\
@@ -114,7 +117,7 @@ fcd()
 	if [ $# -eq 1 ]; then
 		root_dir=$1;
 	else
-		root_dir=. 
+		root_dir=.
 	fi
 
 	dir=`fd $root_dir 2>/dev/null | fzf`
@@ -138,3 +141,17 @@ tma()
 		tmux switch-client -t $target
 	fi
 }
+
+mov2gif()
+{
+	fp=$1
+	fn=`echo $fp | sed 's/.*\\///
+	                    s/.mov//'`
+	echo $fn
+	ffmpeg -i $1 -s 600x400 -pix_fmt rgb8 -r 20 -f gif - | gifsicle --optimize=3 --delay=3 > $fn.gif
+}
+
+################################################################################
+#  Hooks
+################################################################################
+eval "$(direnv hook zsh)"
