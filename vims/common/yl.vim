@@ -15,6 +15,7 @@ set hlsearch
 set mouse="a"
 set list
 set listchars=tab:\ \ ,eol:↲,trail:•,nbsp:␣
+set cursorline
 set termguicolors
 syntax enable
 colorscheme nord
@@ -30,9 +31,10 @@ augroup filetype_settings
 
 	autocmd FileType c,cpp            setlocal textwidth=80
 	autocmd FileType python           setlocal shiftwidth=4 tabstop=4 textwidth=80
-	autocmd FileType go               setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType go               setlocal shiftwidth=2 tabstop=2 textwidth=80
 	autocmd FileType ocaml            setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType javascript       setlocal shiftwidth=4 tabstop=4 textwidth=80
+	autocmd FileType javascriptreact  setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType vim              setlocal shiftwidth=4 tabstop=4 textwidth=80
 	autocmd FileType lua              setlocal shiftwidth=2 tabstop=2 textwidth=80
 augroup END
