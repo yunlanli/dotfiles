@@ -9,6 +9,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'arcticicestudio/nord-vim'                          " Nord Color Theme
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'                                 ":GBrowse opens up GitHub
+Plugin 'tpope/vim-surround'
 Plugin 'vuciv/vim-bujo'                                    " Per-repo todo list
 Plugin 'mhinz/vim-startify'
 
