@@ -80,6 +80,10 @@ nnoremap <Leader>n :tabn<cr>
 nnoremap <Leader>N :tabp<cr>
 nnoremap <Leader>c :tabc<cr>
 
+nnoremap <Leader>bn :bnext<cr>
+nnoremap <Leader>bp :bprev<cr>
+nnoremap <Leader>bd :bwipe! %<cr>
+
 inoremap jk <esc>
 nnoremap <s-up> <Esc>:m .-2<CR>==gi
 nnoremap <s-down> <Esc>:m .+1<CR>==gi
