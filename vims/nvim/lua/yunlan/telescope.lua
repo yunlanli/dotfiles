@@ -134,4 +134,17 @@ M.search_projects = function ()
 	}
 end
 
+M.curbuf = function ()
+  local opts = require('telescope.themes').get_dropdown {
+		layout_strategy = "center",
+		layout_config = {
+			width = 0.5
+		},
+    border = true,
+    previewer = false,
+    shorten_path = false,
+  }
+  require("telescope.builtin").current_buffer_fuzzy_find(opts)
+end
+
 return M

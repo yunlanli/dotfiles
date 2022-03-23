@@ -5,6 +5,8 @@ nnoremap <leader>pa <cmd>lua require('telescope.builtin').file_browser()<cr>
 nnoremap <leader>pc <cmd>lua require('yunlan.telescope').search_dotfiles()<cr>
 nnoremap <leader>pnp <cmd>lua require('yunlan.telescope').search_nvim_plugins()<cr>
 nnoremap <leader>pp <cmd>lua require('yunlan.telescope').search_projects()<cr>
+nnoremap <leader>bg <cmd>lua require('yunlan.telescope').curbuf()<cr>
+nnoremap <leader>bs <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 
 " lsp pickers
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
