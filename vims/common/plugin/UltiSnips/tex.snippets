@@ -1,4 +1,6 @@
 global !p
+# To make this nvim compatible
+# need to turn off treesitter for tex files
 def math():
     return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 
