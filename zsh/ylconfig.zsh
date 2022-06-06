@@ -49,6 +49,7 @@ export LDFLAGS="$LDFALGS -L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/opt/homebrew/o
 # For compilers to find llvm
 export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/llvm/include"
+export GPG_TTY=$(tty)
 
 
 ################################################################################
@@ -63,7 +64,7 @@ alias g="git"
 alias gw="git worktree"
 alias ga="git add"
 alias gb="git branch"
-alias gc="git commit"
+alias gc="git commit -S"
 alias gco="git checkout"
 alias gd="git diff"
 alias gf="git fetch"
@@ -89,6 +90,13 @@ alias wc_pocaml="cd /Users/yunlan/Code/cs@columbia/plt/pocaml_docker"
 alias pocamll="dune exec -- bin/main.exe -l"
 alias pocamla="dune exec -- bin/main.exe -a"
 
+alias s4119="gcloud compute ssh --project cseew4119-yl4387 csee4119-hw"
+alias s4113="gcloud compute ssh testing"
+alias s4112="gcloud compute ssh --zone=us-east1-b --project w4112-346213 w4112-dev"
+
+if [ "$TERM" = "xterm-kitty" ]; then
+	alias ssh="kitty +kitten ssh"
+fi
 
 ################################################################################
 #  Key Bindings
@@ -151,7 +159,26 @@ mov2gif()
 	ffmpeg -i $1 -s 600x400 -pix_fmt rgb8 -r 20 -f gif - | gifsicle --optimize=3 --delay=3 > $fn.gif
 }
 
+book_alias()
+{
+	src=`fd . ~/Dropbox/Study/Columbia/Academics/21-22/spring/ | fzf`
+	fn=`basename $src`
+	dst="/Users/yunlan/Desktop/Books/$fn"
+
+	ln -s "$src" "$dst"
+}
 ################################################################################
 #  Hooks
 ################################################################################
 eval "$(direnv hook zsh)"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+################################################################################
+#  Miscellaneous
+################################################################################
+unsetopt BEEP
+unsetopt LIST_BEEP
+unsetopt HIST_BEEP
+unsetopt AUTO_CD
