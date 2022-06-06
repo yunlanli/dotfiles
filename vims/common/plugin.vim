@@ -30,6 +30,7 @@ if has("nvim")
 	Plugin 'nvim-lua/plenary.nvim'                         " Telescope reqs (Finder)
 	Plugin 'nvim-telescope/telescope.nvim'
 	Plugin 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
+	Plugin 'nvim-telescope/telescope-project.nvim'
 	Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plugin 'nvim-treesitter/playground'
 	Plugin 'kyazdani42/nvim-tree.lua'
@@ -54,6 +55,7 @@ if has("nvim")
 	Plugin 'TimUntersberger/neogit'                        " Nvim clone of emacs magit
 	Plugin 'lewis6991/gitsigns.nvim'
 	Plugin 'folke/trouble.nvim'                            " Prettier {qf|loc}list
+	Plugin 'github/copilot.vim'
 endif
 
 call vundle#end()
