@@ -1,15 +1,6 @@
 local lualine = require 'lualine'
 local devicons = require 'nvim-web-devicons'
 
-local path_comps = vim.fn.split(vim.fn.expand("%"), "/")
-local filename = path_comps[#path_comps]
-local fn_comps = vim.fn.split(filename, "\\.")
-local fn_suffix = fn_comps[#fn_comps]
-
--- Color table for highlights
--- stylua: ignore
-
-local _, ftp_color = devicons.get_icon_color("", fn_suffix)
 local colors = {
 	bg       = '#202328',
 	fg       = '#bbc2cf',
@@ -22,11 +13,26 @@ local colors = {
 	magenta  = '#c678dd',
 	blue     = '#51afef',
 	red      = '#ec5f67',
-	ftp      = ftp_color,
 }
 
+local function get_file_suffix()
+	local path_comps = vim.fn.split(vim.fn.expand("%"), "/")
+	local filename = path_comps[#path_comps]
+	local fn_comps = vim.fn.split(filename, "\\.")
+	local fn_suffix = fn_comps[#fn_comps]
+
+	return fn_suffix
+end
+
+-- TODO: change icon color after switching buffer
+local function get_ftp_color()
+	local _, ftp_color = devicons.get_icon_color("", get_file_suffix())
+
+	return ftp_color
+end
+
 local function get_ftp_icon()
-	return devicons.get_icon("", fn_suffix, { default = true })
+	return devicons.get_icon("", get_file_suffix(), { default = true })
 end
 
 lualine.setup {
@@ -57,7 +63,7 @@ lualine.setup {
 			'%=',
 			{
 				get_ftp_icon,
-				color = { fg = colors.ftp },
+				color = { fg = get_ftp_color() },
 				padding = { right = -1 }
 			},
 			{
