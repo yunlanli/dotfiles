@@ -36,6 +36,23 @@ local function delete_selected_bufs(prompt_bufnr)
 	actions.close(prompt_bufnr)
 end
 
+local function toggle_hidden_files(prompt_bufnr)
+	-- TODO: actually toggle instead of show hidden files every time
+	-- b:telescope_show_hidden_files
+	--   - not exists -> prev state: hide hidden files
+	--   - exists -> prev state: show hidden files
+	-- local prev_show_hidden_files = true
+
+	-- set curr buf to prompt_bufnr, access buffer-local telescope_show_hidden_files attr
+	-- through vim.b.telescope_show_hidden_files
+	--
+	-- how to set the buffer-local attr for prompt buffer ???
+	--
+	-- TODO: after toggle, open the file browser in the correct directory
+
+	actions.close(prompt_bufnr)
+	require 'telescope.builtin'.file_browser { hidden = true }
+end
 
 
 -- Wrapper around telescope.actions.smart_send_to_qflist
@@ -66,11 +83,13 @@ require('telescope').setup {
 			mappings = {
 				i = {
 					["<c-o>"] = set_selected_dir(),
-					["<c-t>"] = set_selected_dir { new_tab = true }
+					["<c-t>"] = set_selected_dir { new_tab = true },
+					["<localleader>h"] = toggle_hidden_files,
 				},
 				n = {
 					["o"] = set_selected_dir(),
-					["<s-o>"] = set_selected_dir { new_tab = true }
+					["<s-o>"] = set_selected_dir { new_tab = true },
+					["h"] = toggle_hidden_files,
 				}
 			}
 		},
@@ -97,11 +116,12 @@ require('telescope').setup {
 		fzf = {
 			override_generic_sorter = true,
 			override_file_sorter = true,
-		},
+		}
 	}
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('project')
 
 local M = {}
 
@@ -127,6 +147,7 @@ M.search_nvim_plugins = function ()
 	}
 end
 
+-- switched to using the telescope-project extension
 M.search_projects = function ()
 	require("telescope.builtin").file_browser {
 		prompt_title = "~ projects ~",
