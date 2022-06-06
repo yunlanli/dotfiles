@@ -7,5 +7,6 @@ let g:ale_fixers = {
 \ 'ocaml': ['ocamlformat'],
 \ 'go': ['gofmt'],
 \ 'python': ['yapf'],
+\ 'c': ['clang-format'],
 \ '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
