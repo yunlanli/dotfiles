@@ -18,9 +18,16 @@
 ;; Org Mode
 ;;
 
-(setq org-directory "~/Dropbox/Life/org")
-
 (after! org
+  (map! :map org-mode-map
+        :n "M-j" #'org-metadown
+        :n "M-k" #'org-metaup)
+
+  (setq
+   org-directory  "~/Dropbox/Life/org"
+   org-hide-emphasis-markers t
+   org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?◦) (?- . ?•)))
+
   (org-add-link-type
    "color"
    (lambda (path)
@@ -39,6 +46,13 @@
 (add-hook 'org-mode-hook
   (lambda ()
     (plist-put org-format-latex-options :scale 0.7)))
+
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
 ;;
 ;; Olivetti
