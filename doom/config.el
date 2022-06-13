@@ -11,7 +11,10 @@
 ;; Key Bindings
 ;;
 
-(map! :leader "f t" 'neotree)
+(map!
+ :leader "f t"  'neotree
+ :leader ">"    'eshell
+ :leader "e e"  'er/expand-region)
 
 
 ;;
@@ -71,12 +74,23 @@
 (require 'org-roam)
 (org-roam-db-autosync-mode)
 
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
 
 ;;
 ;; Org Capture
 ;;
 
-(defun yl/find-create-date-entry ()
+(defun yl/find-create-week-entry ()
   "Append to end of or create Org entry with date heading."
   (let*
       (
@@ -84,7 +98,7 @@
        (dayInNextWeek (org-read-date nil t "+7d"))
        (thisMonday (org-read-date nil t "++Mon" nil dayInLastWeek))
        (thisSunday (org-read-date nil t "--Sun" nil dayInNextWeek))
-       (heading (format "* %s" (format-time-string "%Y")))
+       (heading (format "* %s" (format-time-string "%Y" thisMonday)))
        (heading2 (format "** %s (Monday %s - Sunday %s, %s)"
                          (format-time-string "Week %W")
                          (format-time-string "%b %e" thisMonday)
@@ -104,7 +118,10 @@
 
 (setq org-default-notes-file (concat org-directory "notes.org"))
 (add-to-list 'org-capture-templates
-      `("i" "Internship Thoughts" plain (file+function ,(concat org-directory "/servicenow_2022s.org") yl/find-create-date-entry)
+      `("i" "Internship Thoughts" plain (file+function ,(concat org-directory "/servicenow_2022s.org") yl/find-create-week-entry)
+         nil :unnarrowed t :empty-lines 1))
+(add-to-list 'org-capture-templates
+      `("w" "Weekly Review" plain (file+function ,(concat org-directory "/weekly.org") yl/find-create-week-entry)
          nil :unnarrowed t :empty-lines 1))
 
 ;;

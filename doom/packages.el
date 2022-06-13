@@ -2,4 +2,6 @@
 ;;; $DOOMDIR/packages.el
 
 (package! olivetti)
-(package! org-roam)
+(unpin! org-roam)
+(package! org-roam-ui)
+(package! pinentry)
