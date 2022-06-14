@@ -3,7 +3,7 @@
 
 (setq user-full-name "Yunlan Li"
       user-mail-address "yl4387@columbia.edu")
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-one)
 (setq display-line-numbers-type 'relative)
 
 
@@ -132,3 +132,55 @@
   "+" nil
   "+f" 'dired-create-empty-file
   "+d" 'dired-create-directory)
+
+
+;;
+;; LSP
+;;
+
+(require 'lsp-mode)
+(require 'lsp-ui)
+(require 'lsp-ui-doc)
+
+(defun yl/toggle-lsp-ui-imenu ()
+  "Toggle lsp-ui-imenu."
+  (interactive)
+  (let
+      ((imenu-buffer (get-buffer "*lsp-ui-imenu*")))
+    (if imenu-buffer
+        (evil-delete-buffer imenu-buffer)
+      (lsp-ui-imenu))))
+
+(defun yl/toggle-lsp-ui-doc ()
+  "Toggle lsp-ui-doc."
+  (interactive)
+  (if lsp-ui-doc-mode
+      (lsp-ui-doc-hide)
+    (lsp-ui-doc-show)))
+
+(defun yl/lsp-go-install-save-hooks ()
+  "Hooks for go-mode."
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+(map!
+ :leader :desc "Jump to definition" "c d" #'lsp-ui-peek-find-definitions
+ :leader :desc "Jump to reference" "c D" #'lsp-ui-peek-find-references
+ :leader :desc "Toggle lsp-ui-imenu" "c m" #'yl/toggle-lsp-ui-imenu
+ :leader :desc "Jump to symbol (file)" "c j" #'consult-lsp-file-symbols
+ :leader :desc "Jump to symbol (workspace)" "c J" #'lsp-ivy-workspace-symbol
+ :leader :desc "Toggle lsp-ui-doc" "c k" #'yl/toggle-lsp-ui-doc)
+
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+
+(setq lsp-ui-doc-show-with-cursor nil
+      lsp-ui-doc-position 'top)
+
+(add-hook 'go-mode-hook #'lsp-deferred)
+(add-hook 'go-mode-hook #'yl/lsp-go-install-save-hooks)
+
+
+(lsp-register-custom-settings
+ '(("gopls.completeUnimported" t t)
+   ("gopls.staticcheck" t t)))
