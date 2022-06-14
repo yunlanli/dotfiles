@@ -151,13 +151,6 @@
         (evil-delete-buffer imenu-buffer)
       (lsp-ui-imenu))))
 
-(defun yl/toggle-lsp-ui-doc ()
-  "Toggle lsp-ui-doc."
-  (interactive)
-  (if lsp-ui-doc-mode
-      (lsp-ui-doc-hide)
-    (lsp-ui-doc-show)))
-
 (defun yl/lsp-go-install-save-hooks ()
   "Hooks for go-mode."
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -169,7 +162,8 @@
  :leader :desc "Toggle lsp-ui-imenu" "c m" #'yl/toggle-lsp-ui-imenu
  :leader :desc "Jump to symbol (file)" "c j" #'consult-lsp-file-symbols
  :leader :desc "Jump to symbol (workspace)" "c J" #'lsp-ivy-workspace-symbol
- :leader :desc "Toggle lsp-ui-doc" "c k" #'yl/toggle-lsp-ui-doc)
+ :leader :desc "Show lsp-ui-doc" "c k" #'lsp-ui-doc-show
+ :leader :desc "Hide lsp-ui-doc" "c K" #'lsp-ui-doc-hide)
 
 (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
