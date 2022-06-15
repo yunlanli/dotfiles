@@ -5,3 +5,4 @@
 (unpin! org-roam)
 (package! org-roam-ui)
 (package! pinentry)
+(package! dap-mode)
