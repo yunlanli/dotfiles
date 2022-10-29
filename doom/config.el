@@ -16,6 +16,28 @@
  :leader ">"    'eshell
  :leader "e e"  'er/expand-region)
 
+;;
+;; Roam
+;;
+
+(after! org-roam
+  (map!
+   :leader
+   :prefix ("r" . "org-roam")
+   :desc   "find node and open"     "o" #'org-roam-node-find
+   :desc   "insert node at point"   "i" #'org-roam-node-insert
+   :desc   "capture new or existing node" "c" #'org-roam-capture
+
+   :prefix ("r a" . "node alias")
+   :desc "add alias"     "a" #'org-roam-alias-add
+   :desc "delete alias"  "d" #'org-roam-alias-remove
+
+   :prefix ("r r" . "node reference")
+   :desc "add reference"        "a" #'org-roam-ref-add
+   :desc "delete reference"     "d" #'org-roam-ref-remove
+
+   :prefix ("r u" . "roam ui")
+   :desc "open org-roam-ui webpage"     "o" #'org-roam-ui-open))
 
 ;;
 ;; Org Mode
