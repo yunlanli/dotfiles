@@ -3,8 +3,33 @@
 
 (setq user-full-name "Yunlan Li"
       user-mail-address "yl4387@columbia.edu")
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox-light)
 (setq display-line-numbers-type 'relative)
+
+(add-to-list 'exec-path
+             (concat (getenv "HOME") "/.stack/programs/aarch64-osx/ghc-9.0.2/bin"))
+(setq envrc-direnv-executable "/opt/homebrew/bin/direnv")
+
+;;
+;; e-shell
+;;
+
+(defun shortened-path (path)
+  (let ( (components (split-string path "/")) )
+    (if (or (length< components 3)
+            (and (length= components 4) (string= (substring path 0 1) "/")))
+        path
+        (mapconcat 'identity (seq-subseq components -3) "/"))))
+
+(setq eshell-prompt-function (lambda nil
+        (concat "λ " (shortened-path (eshell/pwd)) " ❯ ")))
+
+(setq eshell-prompt-regexp "^λ [^λ❯ ]+ ❯ ")
+
+(defun eshell-new()
+  "Open a new instance of eshell."
+  (interactive)
+  (eshell '-1))
 
 
 ;;
@@ -39,6 +64,16 @@
    :prefix ("r u" . "roam ui")
    :desc "open org-roam-ui webpage"     "o" #'org-roam-ui-open))
 
+
+;;
+;; Olivetti
+;;
+
+(use-package olivetti
+  :init
+  (setq olivetti-body-width 100))
+
+
 ;;
 ;; Org Mode
 ;;
@@ -49,7 +84,7 @@
         :n "M-k" #'org-metaup)
 
   (setq
-   org-directory  "~/Dropbox/Life/org"
+   org-directory  "~/Dropbox/Emacs/org/"
    org-hide-emphasis-markers t
    org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?◦) (?- . ?•)))
 
@@ -69,8 +104,10 @@
        (format "{\\color{%s}%s}" path desc))))))
 
 (add-hook 'org-mode-hook
-  (lambda ()
+(lambda ()
     (plist-put org-format-latex-options :scale 0.7)))
+(setq-default fill-column 85)
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
@@ -79,20 +116,13 @@
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
-;;
-;; Olivetti
-;;
-
-(use-package olivetti
-  :init
-  (setq olivetti-body-width 100))
-
+(setq-default doom-scratch-initial-major-mode 'org-mode)
 
 ;;
 ;;  Org Roam
 ;;
 
-(setq org-roam-directory "~/Dropbox/Study/org-roam")
+(setq org-roam-directory (file-truename "~/Dropbox/Emacs/org-roam"))
 (require 'org-roam)
 (org-roam-db-autosync-mode)
 
@@ -106,7 +136,6 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
-
 
 ;;
 ;; Org Capture
@@ -144,7 +173,16 @@
          nil :unnarrowed t :empty-lines 1))
 (add-to-list 'org-capture-templates
       `("w" "Weekly Review" plain (file+function ,(concat org-directory "/weekly.org") yl/find-create-week-entry)
-         nil :unnarrowed t :empty-lines 1))
+        nil :unnarrowed t :empty-lines 1)
+      `("c" "PPS Meeting Notes" plain (file+function ,(concat org-directory "/pps_meeting_notes.org") yl/find-create-week-entry)
+        nil :unnarrowed t :empty-lines 1)
+      )
+(add-to-list 'org-capture-templates
+             `("r"
+               "Reading Notes"
+               entry
+               (file ,(concat org-directory "/reading_notes.org"))
+               "* %^{Book|APUE|OSTEP} - %^{Chapter / Topic}\n\n(%t)\n%i%?\n\n"))
 
 ;;
 ;; Dired
@@ -193,6 +231,9 @@
 (setq lsp-ui-doc-show-with-cursor nil
       lsp-ui-doc-position 'top)
 
+;; Go
+(setq lsp-go-env '((GOFLAGS . "-tags=unit_test,integration_test")))
+
 (add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'go-mode-hook #'yl/lsp-go-install-save-hooks)
 
@@ -200,6 +241,21 @@
 (lsp-register-custom-settings
  '(("gopls.completeUnimported" t t)
    ("gopls.staticcheck" t t)))
+
+;; Python
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-pyright)
+;;                           (lsp))))  ; or lsp-deferred
+
+;; Haskell
+;;
+(require 'lsp)
+(require 'lsp-haskell)
+;; Hooks so haskell and literate haskell major modes trigger LSP setup
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'haskell-literate-mode-hook #'lsp)
 
 ;;
 ;; DAP
